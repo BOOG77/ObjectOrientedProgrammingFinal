@@ -1,6 +1,8 @@
 package finalJavaFiles;
 
 public class Instructor extends User {
+    private String department;
+
     // Instructor ID
     private static int idCounter = 1000;
 
@@ -9,7 +11,28 @@ public class Instructor extends User {
     }
 
     // Constructor
-    Instructor(String name, int age, String email) {
-        super(name, age, email, "1234", "Instructor");
+    Instructor(String name, int age, String email, String department) {
+        super(name, age, email, generateInstructorID(), "Instructor");
+        this.department = department;
+    }
+
+    // setters
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    // getters
+    public String getDepartment() {
+        return this.department;
+    }
+
+    public void displayDetails() {
+        System.out.println("-----------------------------");
+        System.out.println("Instructor Name: " + getName());
+        System.out.println("Instructor Email: " + getEmail());
+        System.out.println("Instructor Age: " + getAge());
+        System.out.println("Instructor Role: " + getRole());
+        System.out.println("Instructor Department: " + getDepartment());
+        System.out.println("-----------------------------");
     }
 }

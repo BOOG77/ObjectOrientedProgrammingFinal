@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Employee extends User {
     LocalDate date = LocalDate.now();
+
     private String job;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -24,11 +25,47 @@ public class Employee extends User {
         this.startDate = LocalDate.now();
     }
 
+    // getters
     public LocalDate getStartDate() {
-        return startDate;
+        return this.startDate;
     }
 
     public LocalDate getEndDate() {
-        return endDate;
+        return this.endDate;
+    }
+
+    public float getSalary() {
+        return this.salary;
+    }
+
+    public String getJob() {
+        return this.job;
+    }
+
+    // setters
+    // start date cannot be set because it would remove validity
+    public void setEndDate(LocalDate date) {// fired
+        this.endDate = date;
+    }
+
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public void displayDetails() {
+        System.out.println("-----------------------------");
+        System.out.println("Employee Name: " + getName());
+        System.out.println("Employee Email: " + getEmail());
+        System.out.println("Employee Age: " + getAge());
+        System.out.println("Employee Role: " + getRole());
+        System.out.println("Employee Job: " + getJob());
+        System.out.println("Employee Salary: $" + getSalary());
+        System.out.println("Employee Start Date: " + getStartDate());
+        System.out.println("Employee End Date: " + getEndDate());
+        System.out.println("-----------------------------");
     }
 }

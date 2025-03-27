@@ -52,4 +52,8 @@ abstract class User {
         return this.role;
     }
 
+    public String getID() {
+        return this.ID;
+    }
+
 }
