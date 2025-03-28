@@ -8,7 +8,7 @@ abstract class User {
     private String ID;
 
     // Constructor
-    User(String name, int age, String email, String ID, String role) {
+    public User(String name, int age, String email, String ID, String role) {
         this.name = name;
         this.age = age;
         this.email = email;

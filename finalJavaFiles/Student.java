@@ -13,7 +13,7 @@ public class Student extends User {
     }
 
     // Constructor
-    Student(String name, int age, String email, String major, double GPA) {
+    public Student(String name, int age, String email, String major, double GPA) {
         super(name, age, email, generateStudentID(), "Student");
         this.major = major;
         this.GPA = GPA;

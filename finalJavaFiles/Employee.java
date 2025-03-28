@@ -18,7 +18,7 @@ public class Employee extends User {
     }
 
     // Constructor
-    Employee(String name, int age, String email, String job) {
+    public Employee(String name, int age, String email, String job) {
         super(name, age, email, generateEmployeeID(), "Employee");
         this.job = job;
         this.salary = 50000.00f;

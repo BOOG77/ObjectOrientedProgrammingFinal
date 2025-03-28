@@ -11,7 +11,7 @@ public class Instructor extends User {
     }
 
     // Constructor
-    Instructor(String name, int age, String email, String department) {
+    public Instructor(String name, int age, String email, String department) {
         super(name, age, email, generateInstructorID(), "Instructor");
         this.department = department;
     }
