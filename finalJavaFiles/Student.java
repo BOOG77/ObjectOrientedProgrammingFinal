@@ -34,7 +34,7 @@ public class Student extends User {
     }
 
     // setters
-    public void setEnrollmentSatus(String enrollmentStatus) {
+    public void setEnrollmentStatus(String enrollmentStatus) {
         this.enrollmentStatus = enrollmentStatus;
     }
 
