@@ -5,7 +5,7 @@ public class Student extends Person { // Student class extending Person class
     private final String studentId; // Final variable for student ID
     private String major; // Instance variable for major
     private double gpa; // Instance variable for GPA
-
+    
     public String getStudentId() { // Getter method for student ID
         return studentId; // Return the student ID
     }
@@ -26,19 +26,30 @@ public class Student extends Person { // Student class extending Person class
         this.gpa = gpa; // Set the GPA
     }
 
-    Student(String name, int age, String address, String major, double gpa) { // Constructor with parameters
+    public Student(String name, int age, String address, String major, double gpa) { // Constructor with parameters
         super(name, age, address); // Call the superclass constructor
-        this.studentId = "S" + (++idCounter); // Generate the student ID
+        this.studentId = "S" + (idCounter++); // Generate the student ID
         this.major = major; // Initialize the major
         this.gpa = gpa; // Initialize the GPA
     }
 
-    @Override // Override the displayDetails() method from the Person class
-    public void displayDetails() { // Method to display the details of the student
-        super.displayDetails(); // Call the superclass method to display the person details
+     // Override the displayDetails() method from the Person class
+     @Override
+     public void displayDetails() { // Method to display the details of the student
+        System.out.println("Name: " + getName()); // Display the name
+        System.out.println("Age: " + getAge()); // Display the age
+        System.out.println("Address: " + getAddress()); // Display the address
         System.out.println("Student ID: " + studentId); // Display the student ID
         System.out.println("Major: " + major); // Display the major
         System.out.println("GPA: " + gpa); // Display the GPA
+        System.out.println(" ");
+        System.out.println("Press enter to continue...");
+        //This bit of code I got from Jeremy, it allows user to read then continue to next student details then back to menu after all students viewed.
+        try {
+            System.in.read();
+        } catch(Exception e) {
+            System.out.println("Press enter to continue...");
+        }
     }
 
 }
