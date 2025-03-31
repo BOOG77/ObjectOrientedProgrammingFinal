@@ -9,6 +9,19 @@ public class Main {
         e1.displayDetails();
         s1.displayDetails();
         i1.displayDetails();
+
+        System.out.println(" "); // Prints space
+        System.out.println("Student & Employee Management System");
+        System.out.println(" ");
+        System.out.println("====================================");
+        System.out.println("Menu Options:");
+        System.out.println("1. Add Student or Employee");
+        System.out.println("2. Display Details of Students or Employees");
+        System.out.println("3. Search for a Student or Employee by ID");
+        System.out.println("4. Exit");
+        System.out.println("====================================");
+        System.out.println(" ");
+        System.out.println("Enter your choice:");
     }
 
 }
