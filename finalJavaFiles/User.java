@@ -1,6 +1,8 @@
 package finalJavaFiles;
 
-abstract class User {
+import java.io.Serializable;//save to file
+
+abstract class User implements Serializable {
     private String name;
     private int age;
     private String email;
