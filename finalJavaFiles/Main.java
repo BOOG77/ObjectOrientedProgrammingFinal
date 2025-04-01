@@ -5,16 +5,32 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        // 3 types of arraylists
+        ArrayList<Employee> employees = new ArrayList<Employee>();
+        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Instructor> instructors = new ArrayList<Instructor>();
+        // reads
+        try {
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("employeeList.dat"));
+            employees = (ArrayList<Employee>) input.readObject();
+            students = (ArrayList<Student>) input.readObject();
+            instructors = (ArrayList<Instructor>) input.readObject();
+            input.close();
+        } catch (IOException ioe) {
+            System.err.println("Error opening file");
+        } catch (ClassNotFoundException cnfe) {// if object read is not an employee object
+            System.err.println("Object read is not Employee");
+        }
+
+        // test objects
         Employee e1 = new Employee("Judah", 18, "judah@csanyi.ca", "Janitor");
-        Student s1 = new Student("Bob", 20, "asdf@email.com", "IT", 4.0);
-        Instructor i1 = new Instructor("Billy", 46, "Billy@gmil.com", "Math");
-        e1.displayDetails();
-        s1.displayDetails();
-        i1.displayDetails();
+        Employee e2 = new Employee("Josh", 22, "Josh@email.com", "It consultant");
 
         System.out.println(" "); // Prints space
         System.out.println("Student & Employee Management System");
@@ -29,28 +45,25 @@ public class Main {
         System.out.println(" ");
         System.out.println("Enter your choice:");
 
-        // write the object to the file
+        System.out.println("User write an object to the employees arrayList");
+        employees.add(e2);
+
+        for (Employee i : employees) {
+            i.displayDetails();
+        }
+
+        // writes
         try {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("employeeList.dat"));// opens the
-                                                                                                         // file
-            output.writeObject(e1);// writes the object e1 to the .dat file
+            // file
+            output.writeObject(employees);// writes the object e1 to the .dat file
+            output.writeObject(students);
+            output.writeObject(instructors);
+
             output.close();
         } catch (IOException ioe) {
             System.err.println("Error saving to file");
         }
-
-        // read the file back in
-        Employee e2 = null;// container to hold the data
-        try {
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream("employeeList.dat"));
-            e2 = (Employee) input.readObject();
-            input.close();
-        } catch (IOException ioe) {
-            System.err.println("Error opening file");
-        } catch (ClassNotFoundException cnfe) {// if object read is not an employee object
-            System.err.println("Object read is not Employee");
-        }
-        e2.displayDetails();
 
     }
 

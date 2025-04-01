@@ -6,8 +6,7 @@ public class Employee extends User {
     LocalDate date = LocalDate.now();
 
     private String job;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDate startDate, endDate;
     private float salary;
 
     // Generates ID

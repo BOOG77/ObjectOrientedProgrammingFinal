@@ -1,9 +1,8 @@
 package finalJavaFiles;
 
 public class Student extends User {
-    private String major;
+    private String major, enrollmentStatus;
     private double GPA;
-    private String enrollmentStatus;
 
     // Student ID
     private static int idCounter = 1000;
