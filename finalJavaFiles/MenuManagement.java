@@ -17,7 +17,7 @@ public class MenuManagement {
         return instructors;
     }
     */
-    public static void displayMenu() {
+    public static void displayMenu() { // Made method for menu - Josh
         System.out.println(" "); // Prints space
         System.out.println("╔═════════════════════════════════════════════╗");
         System.out.println("║      Student/Employee Management System     ║");
