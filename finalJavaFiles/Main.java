@@ -1,10 +1,10 @@
 package finalJavaFiles;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.FileOutputStream;//Writes data to a file in bytes
+import java.io.IOException;//Manage errors with input and output
+import java.io.ObjectOutputStream;//Converts objects to a stream of bytes
+import java.io.FileInputStream;//Reads data from a file as as a stream of bytes
+import java.io.ObjectInputStream;//Converts a stream of bytes into objects
 import java.util.ArrayList;
 
 public class Main {
@@ -15,7 +15,8 @@ public class Main {
         ArrayList<Employee> employees = new ArrayList<Employee>();
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Instructor> instructors = new ArrayList<Instructor>();
-        // reads
+        
+        //Reads and assigns data to the 3 arrayLists from the file
         try {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream("employeeList.dat"));
             employees = (ArrayList<Employee>) input.readObject();
@@ -46,25 +47,22 @@ public class Main {
         System.out.println("Enter your choice:");
 
         System.out.println("User write an object to the employees arrayList");
-        employees.add(e2);
+     
 
         for (Employee i : employees) {
             i.displayDetails();
         }
 
-        // writes
+        //Writes the 3 arrayLists to the file
         try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("employeeList.dat"));// opens the
-            // file
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("employeeList.dat"));
             output.writeObject(employees);// writes the object e1 to the .dat file
             output.writeObject(students);
             output.writeObject(instructors);
-
             output.close();
         } catch (IOException ioe) {
             System.err.println("Error saving to file");
         }
-
     }
 
 }

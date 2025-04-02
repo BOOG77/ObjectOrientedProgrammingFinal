@@ -1,6 +1,6 @@
 package finalJavaFiles;
 
-import java.io.Serializable;//save to file
+import java.io.Serializable;//allows the object to be converted into bytes
 
 abstract class User implements Serializable {
     private String name;
