@@ -33,18 +33,7 @@ public class Main {
         Employee e1 = new Employee("Judah", 18, "judah@csanyi.ca", "Janitor");
         Employee e2 = new Employee("Josh", 22, "Josh@email.com", "It consultant");
 
-        System.out.println(" "); // Prints space
-        System.out.println("Student & Employee Management System");
-        System.out.println(" ");
-        System.out.println("====================================");
-        System.out.println("Menu Options:");
-        System.out.println("1. Add Student or Employee");
-        System.out.println("2. Display Details of Students or Employees");
-        System.out.println("3. Search for a Student or Employee by ID");
-        System.out.println("4. Exit");
-        System.out.println("====================================");
-        System.out.println(" ");
-        System.out.println("Enter your choice:");
+        MenuManagement.displayMenu();
 
         System.out.println("User write an object to the employees arrayList");
      
