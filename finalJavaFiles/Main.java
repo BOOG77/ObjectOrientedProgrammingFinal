@@ -10,15 +10,16 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
+        MenuManagement menu = new MenuManagement();// an object holding all the menus
 
         // 3 types of arraylists
         ArrayList<Employee> employees = new ArrayList<Employee>();
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Instructor> instructors = new ArrayList<Instructor>();
-        
-        //Reads and assigns data to the 3 arrayLists from the file
+
+        // Reads and assigns data to the 3 arrayLists from the file
         try {
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream("employeeList.dat"));
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("Database/employeeList.dat"));
             employees = (ArrayList<Employee>) input.readObject();
             students = (ArrayList<Student>) input.readObject();
             instructors = (ArrayList<Instructor>) input.readObject();
@@ -30,21 +31,16 @@ public class Main {
         }
 
         // test objects
-        Employee e1 = new Employee("Judah", 18, "judah@csanyi.ca", "Janitor");
-        Employee e2 = new Employee("Josh", 22, "Josh@email.com", "It consultant");
 
-        MenuManagement.displayMenu();
+        menu.mainMenu();
 
-        System.out.println("User write an object to the employees arrayList");
-     
+        // for (Employee i : employees) {
+        // i.displayDetails();
+        // }
 
-        for (Employee i : employees) {
-            i.displayDetails();
-        }
-
-        //Writes the 3 arrayLists to the file
+        // Writes the 3 arrayLists to the file
         try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("employeeList.dat"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Database/employeeList.dat"));
             output.writeObject(employees);// writes the object e1 to the .dat file
             output.writeObject(students);
             output.writeObject(instructors);
