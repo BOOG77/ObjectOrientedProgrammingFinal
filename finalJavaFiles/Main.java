@@ -5,6 +5,7 @@ import java.io.IOException;//Manage errors with input and output
 import java.io.ObjectOutputStream;//Converts objects to a stream of bytes
 import java.io.FileInputStream;//Reads data from a file as as a stream of bytes
 import java.io.ObjectInputStream;//Converts a stream of bytes into objects
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -14,7 +15,6 @@ public class Main {
     @SuppressWarnings("unchecked")
 
     public static void main(String[] args) {
-        MenuManagement menu = new MenuManagement();// an object holding all the menus
 
         // 3 types of arraylists
         ArrayList<Employee> employees = new ArrayList<Employee>();
@@ -22,7 +22,6 @@ public class Main {
         ArrayList<Instructor> instructors = new ArrayList<Instructor>();
 
         // Reads and assigns data to the 3 arrayLists from the file
-
         try {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream("Database/employeeList.dat"));
             employees = (ArrayList<Employee>) input.readObject();
@@ -35,17 +34,18 @@ public class Main {
             System.err.println("Object read is not Employee");
         }
 
+        MenuManagement menu = new MenuManagement(employees, students, instructors);// an object holding all the menus
+
         menu.mainMenu();
 
         // for (Employee i : employees) {
         // i.displayDetails();
         // }
-
         save(employees, students, instructors);
+
     }
 
-    private static void save(ArrayList<Employee> employees, ArrayList<Student> students,
-            ArrayList<Instructor> instructors) {
+    static void save(ArrayList<Employee> employees, ArrayList<Student> students, ArrayList<Instructor> instructors) {
         try {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Database/employeeList.dat"));
             // Writes the 3 arrayLists to the file

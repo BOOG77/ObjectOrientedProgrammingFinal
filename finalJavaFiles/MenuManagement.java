@@ -1,13 +1,25 @@
 package finalJavaFiles;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class MenuManagement {
-    // static MenuProcessor processor = new MenuProcessor();
+    static MenuProcessor processor = new MenuProcessor();
     static Scanner scanner = new Scanner(System.in);
     static int userInput;
+    ArrayList<Employee> employees;
+    ArrayList<Student> students;
+    ArrayList<Instructor> instructors;
+
+    public MenuManagement(ArrayList<Employee> employees, ArrayList<Student> students,
+            ArrayList<Instructor> instructors) {
+        this.employees = employees;
+        this.students = students;
+        this.instructors = instructors;
+    }
 
     public void mainMenu() { // Made method for menu - Josh
+        clearScreen();
         System.out.println("\n╔═════════════════════════════════════════════╗");
         System.out.println("║              Management System              ║");
         System.out.println("╚═════════════════════════════════════════════╝");
@@ -41,12 +53,14 @@ public class MenuManagement {
             case 5:
                 break;
             default:
+                System.out.println("Error - enter a valid input");
                 break;
         }
     }
 
     public void studentMenu() {
-        System.out.println("\n╔══════════════════════════════════════════════╗");
+        clearScreen();
+        System.out.println("\n╔═══════════════════════════════════════════════╗");
         System.out.println("║               Student Management              ║");
         System.out.println("╚═══════════════════════════════════════════════╝");
         System.out.println("====================================");
@@ -63,16 +77,24 @@ public class MenuManagement {
 
         switch (userInput) {
             case 1:
-                // processor.studentAdd();
+                clearScreen();
+                students = processor.studentAdd(students);
+                studentMenu();
                 break;
             case 2:
-                // processor.studentDetails();
+                clearScreen();
+                processor.studentDetails(students);
+                studentMenu();
                 break;
             case 3:
-                // processor.studentSearchID();
+                clearScreen();
+                processor.studentSearchID(students);
+                studentMenu();
                 break;
             case 4:
-                // processor.studentSearchName();
+                clearScreen();
+                processor.studentSearchName(students);
+                studentMenu();
                 break;
             case 5:
                 mainMenu();
@@ -81,10 +103,12 @@ public class MenuManagement {
             default:
                 break;
         }
+
     }
 
     public void instructorMenu() {
-        System.out.println("\n╔══════════════════════════════════════════════╗");
+        clearScreen();
+        System.out.println("\n╔═══════════════════════════════════════════════╗");
         System.out.println("║             Instructor Management             ║");
         System.out.println("╚═══════════════════════════════════════════════╝");
         System.out.println("====================================");
@@ -122,7 +146,8 @@ public class MenuManagement {
     }
 
     public void employeeMenu() {
-        System.out.println("\n╔══════════════════════════════════════════════╗");
+        clearScreen();
+        System.out.println("\n╔═══════════════════════════════════════════════╗");
         System.out.println("║              Employee Management              ║");
         System.out.println("╚═══════════════════════════════════════════════╝");
         System.out.println("====================================");
@@ -159,9 +184,9 @@ public class MenuManagement {
 
     }
 
-    public static final void clearScreen() {
-        System.out.println("Press any key to continue..");
-        scanner.nextLine();
+    static final void clearScreen() {
+        // System.out.println("Press any key to continue..");
+        // scanner.nextLine();
         System.out.println("\u001B[2J");
     }
 }

@@ -48,12 +48,13 @@ public class Student extends User {
     public void displayDetails() {
         System.out.println("-----------------------------");
         System.out.println("Student Name: " + getName());
-        System.out.println("Student Email: " + getEmail());
-        System.out.println("Student Age: " + getAge());
+        System.out.println("Student ID: " + getID());
         System.out.println("Student Role: " + getRole());
         System.out.println("Student Major: " + getMajor());
-        System.out.println("Student GPA: " + getGPA());
         System.out.println("Student Enrollment Status: " + getEnrollmentStatus());
+        System.out.println("Student GPA: " + getGPA());
+        System.out.println("Student Email: " + getEmail());
+        System.out.println("Student Age: " + getAge());
         System.out.println("-----------------------------");
     }
 

@@ -58,6 +58,7 @@ public class Employee extends User {
     public void displayDetails() {
         System.out.println("-----------------------------");
         System.out.println("Employee Name: " + getName());
+        System.out.println("Employee ID: " + getID());
         System.out.println("Employee Email: " + getEmail());
         System.out.println("Employee Age: " + getAge());
         System.out.println("Employee Role: " + getRole());

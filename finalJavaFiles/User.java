@@ -15,6 +15,7 @@ abstract class User implements Serializable {
         this.age = age;
         this.email = email;
         this.role = role;
+        this.ID = ID;
     }
 
     // setters
