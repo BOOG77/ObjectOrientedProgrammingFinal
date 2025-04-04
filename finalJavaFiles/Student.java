@@ -5,8 +5,6 @@ public class Student extends User {
     private double GPA;
 
     // Student ID
-    private static int idCounter = 1000;
-
     public static String generateStudentID() {
         return "S" + (idCounter++);
     }

@@ -10,8 +10,6 @@ public class Employee extends User {
     private float salary;
 
     // Generates ID
-    private static int idCounter = 1000;
-
     public static String generateEmployeeID() {
         return "E" + (idCounter++);
     }

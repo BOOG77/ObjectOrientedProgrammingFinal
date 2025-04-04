@@ -4,8 +4,6 @@ public class Instructor extends User {
     private String department;
 
     // Instructor ID
-    private static int idCounter = 1000;
-
     public static String generateInstructorID() {
         return "I" + (idCounter++);
     }

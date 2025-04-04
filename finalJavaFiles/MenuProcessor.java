@@ -187,6 +187,44 @@ public class MenuProcessor {
         pause();
     }
 
+    // 1.5
+    public void studentDelete(ArrayList<Student> students) {
+        System.out.print("Enter student ID: ");
+        stringInput = scanner.nextLine();
+
+        int numStudentsFound = 0;
+
+        boolean studentFound = false;
+
+        for (Student student : students) {
+            if (student.getID().equals(stringInput)) {
+                tempStudent = student;
+                System.out.println("\nSuccess");
+                student.displayDetails();
+                studentFound = true;
+                numStudentsFound++;
+            } else {
+                System.out.println("Searching...");
+                // if last position in arraylist and student not found
+                if (students.get(students.size() - 1) == student && !studentFound) {
+                    System.out.println("\nFailure - Student not found");
+                }
+            }
+        }
+        System.out.println("\nSearch has concluded, " + numStudentsFound + " student's found\n");
+
+        if (studentFound) {
+            System.out.print("Are you sure you want to permently delete the student's data [Y/n]? ");
+            stringInput = scanner.nextLine();
+
+            if (stringInput.toLowerCase().contains("y")) {
+                students.remove(tempStudent);
+                System.out.println("The student " + tempStudent.getName() + " has been deleted");
+            }
+        }
+        pause();
+    }
+
     static final void pause() {
         System.out.println("Press any key to continue..");
         scanner.nextLine();

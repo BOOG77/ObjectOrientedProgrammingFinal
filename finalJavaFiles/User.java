@@ -8,6 +8,7 @@ abstract class User implements Serializable {
     private String email;
     private String role;
     private String ID;
+    static int idCounter = 1000;
 
     // Constructor
     public User(String name, int age, String email, String ID, String role) {
@@ -35,6 +36,10 @@ abstract class User implements Serializable {
         this.role = role;
     }
 
+    public void setIDCounter(int idCounter) {
+        this.idCounter = idCounter;
+    }
+
     // *NEEDS TO BE WORKED ON SO THERE CAN NOT BE DUPLICATE ID'S */
     // public void setID(String ID){this.ID = ID;}
 
@@ -59,4 +64,7 @@ abstract class User implements Serializable {
         return this.ID;
     }
 
+    public int getIDCounter() {
+        return this.idCounter;
+    }
 }

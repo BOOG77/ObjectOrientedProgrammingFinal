@@ -16,6 +16,23 @@ public class MenuManagement {
         this.employees = employees;
         this.students = students;
         this.instructors = instructors;
+        String idCounterFix;
+
+        if (students.size() != 0) {// checks if array is empty
+            idCounterFix = students.get(students.size() - 1).getID();// gets id ie. S1000
+            idCounterFix = idCounterFix.substring(1, idCounterFix.length()); // removes letter ie. 1000
+            Student.idCounter = Integer.parseInt(idCounterFix) + 1;// updates idCounter from file ie. 1001
+        }
+        if (employees.size() != 0) {
+            idCounterFix = employees.get(employees.size() - 1).getID();
+            idCounterFix = idCounterFix.substring(1, idCounterFix.length());
+            Employee.idCounter = Integer.parseInt(idCounterFix) + 1;
+        }
+        if (instructors.size() != 0) {
+            idCounterFix = instructors.get(instructors.size() - 1).getID();
+            idCounterFix = idCounterFix.substring(1, idCounterFix.length());
+            Instructor.idCounter = Integer.parseInt(idCounterFix) + 1;
+        }
     }
 
     public void mainMenu() { // Made method for menu - Josh
@@ -68,7 +85,8 @@ public class MenuManagement {
         System.out.println("2) Display details of all Student.");
         System.out.println("3) Search for a Student by ID.");
         System.out.println("4) Search for a Student by name.");
-        System.out.println("5) Exit to Main Menu.");
+        System.out.println("5) Delete Student");
+        System.out.println("6) Exit to Main Menu.");
         System.out.println("====================================");
         System.out.print("\nEnter your choice: ");
 
@@ -97,9 +115,13 @@ public class MenuManagement {
                 studentMenu();
                 break;
             case 5:
+                clearScreen();
+                processor.studentDelete(students);
+                studentMenu();
+                break;
+            case 6:
                 mainMenu();
                 break;
-
             default:
                 break;
         }
@@ -185,8 +207,6 @@ public class MenuManagement {
     }
 
     static final void clearScreen() {
-        // System.out.println("Press any key to continue..");
-        // scanner.nextLine();
         System.out.println("\u001B[2J");
     }
 }
