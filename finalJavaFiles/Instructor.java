@@ -28,10 +28,10 @@ public class Instructor extends User {
         System.out.println("-----------------------------");
         System.out.println("Instructor Name: " + getName());
         System.out.println("Instructor ID: " + getID());
-        System.out.println("Instructor Email: " + getEmail());
-        System.out.println("Instructor Age: " + getAge());
         System.out.println("Instructor Role: " + getRole());
         System.out.println("Instructor Department: " + getDepartment());
+        System.out.println("Instructor Email: " + getEmail());
+        System.out.println("Instructor Age: " + getAge());
         System.out.println("-----------------------------");
     }
 }

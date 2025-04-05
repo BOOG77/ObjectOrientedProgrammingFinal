@@ -57,11 +57,11 @@ public class Employee extends User {
         System.out.println("-----------------------------");
         System.out.println("Employee Name: " + getName());
         System.out.println("Employee ID: " + getID());
-        System.out.println("Employee Email: " + getEmail());
-        System.out.println("Employee Age: " + getAge());
         System.out.println("Employee Role: " + getRole());
         System.out.println("Employee Job: " + getJob());
         System.out.println("Employee Salary: $" + getSalary());
+        System.out.println("Employee Email: " + getEmail());
+        System.out.println("Employee Age: " + getAge());
         System.out.println("Employee Start Date: " + getStartDate());
         System.out.println("Employee End Date: " + getEndDate());
         System.out.println("-----------------------------");

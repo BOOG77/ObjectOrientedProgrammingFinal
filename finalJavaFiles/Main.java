@@ -37,12 +37,7 @@ public class Main {
         MenuManagement menu = new MenuManagement(employees, students, instructors);// an object holding all the menus
 
         menu.mainMenu();
-
-        // for (Employee i : employees) {
-        // i.displayDetails();
-        // }
         save(employees, students, instructors);
-
     }
 
     static void save(ArrayList<Employee> employees, ArrayList<Student> students, ArrayList<Instructor> instructors) {

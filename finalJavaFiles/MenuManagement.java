@@ -7,31 +7,37 @@ public class MenuManagement {
     static MenuProcessor processor = new MenuProcessor();
     static Scanner scanner = new Scanner(System.in);
     static int userInput;
-    ArrayList<Employee> employees;
     ArrayList<Student> students;
     ArrayList<Instructor> instructors;
+    ArrayList<Employee> employees;
 
     public MenuManagement(ArrayList<Employee> employees, ArrayList<Student> students,
             ArrayList<Instructor> instructors) {
-        this.employees = employees;
         this.students = students;
         this.instructors = instructors;
+        this.employees = employees;
         String idCounterFix;
 
         if (students.size() != 0) {// checks if array is empty
             idCounterFix = students.get(students.size() - 1).getID();// gets id ie. S1000
             idCounterFix = idCounterFix.substring(1, idCounterFix.length()); // removes letter ie. 1000
             Student.idCounter = Integer.parseInt(idCounterFix) + 1;// updates idCounter from file ie. 1001
-        }
-        if (employees.size() != 0) {
-            idCounterFix = employees.get(employees.size() - 1).getID();
-            idCounterFix = idCounterFix.substring(1, idCounterFix.length());
-            Employee.idCounter = Integer.parseInt(idCounterFix) + 1;
+        } else {
+            Student.idCounter = 1000;
         }
         if (instructors.size() != 0) {
             idCounterFix = instructors.get(instructors.size() - 1).getID();
             idCounterFix = idCounterFix.substring(1, idCounterFix.length());
             Instructor.idCounter = Integer.parseInt(idCounterFix) + 1;
+        } else {
+            Instructor.idCounter = 1000;
+        }
+        if (employees.size() != 0) {
+            idCounterFix = employees.get(employees.size() - 1).getID();
+            idCounterFix = idCounterFix.substring(1, idCounterFix.length());
+            Employee.idCounter = Integer.parseInt(idCounterFix) + 1;
+        } else {
+            Employee.idCounter = 1000;
         }
     }
 
@@ -44,8 +50,8 @@ public class MenuManagement {
         System.out.println("====================================");
         System.out.println("Menu Options:");
         System.out.println("1. Manage Students");
-        System.out.println("2. Manage Employees");
-        System.out.println("3. Manage Instructors");
+        System.out.println("2. Manage Instructors");
+        System.out.println("3. Manage Employees");
         System.out.println("4. Search By ID");
         System.out.println("5. Save and Exit");
         System.out.println("====================================");
@@ -59,10 +65,10 @@ public class MenuManagement {
                 studentMenu();
                 break;
             case 2:
-                employeeMenu();
+                instructorMenu();
                 break;
             case 3:
-                instructorMenu();
+                employeeMenu();
                 break;
             case 4:
                 // fullIDSearch();
@@ -138,7 +144,8 @@ public class MenuManagement {
         System.out.println("2) Display details of all Instructor.");
         System.out.println("3) Search for an Instructor by ID.");
         System.out.println("4) Search for an Instructor by name.");
-        System.out.println("5) Exit to Main Menu.");
+        System.out.println("5) Delete Instructor");
+        System.out.println("6) Exit to Main Menu.");
         System.out.println("====================================");
         System.out.print("\nEnter your choice: ");
         userInput = scanner.nextInt();
@@ -146,21 +153,34 @@ public class MenuManagement {
 
         switch (userInput) {
             case 1:
-                // processor.instructorAdd();
+                clearScreen();
+                instructors = processor.instructorAdd(instructors);
+                instructorMenu();
                 break;
             case 2:
-                // processor.instructorDetails();
+                clearScreen();
+                processor.instructorDetails(instructors);
+                instructorMenu();
                 break;
             case 3:
-                // processor.instructorSearchID();
+                clearScreen();
+                processor.instructorSearchID(instructors);
+                instructorMenu();
                 break;
             case 4:
-                // processor.instructorSearchName();
+                clearScreen();
+                processor.instructorSearchName(instructors);
+                instructorMenu();
                 break;
             case 5:
+                clearScreen();
+                processor.instructorDelete(instructors);
+                instructorMenu();
+                break;
+            case 6:
+                clearScreen();
                 mainMenu();
                 break;
-
             default:
                 break;
         }
@@ -177,7 +197,8 @@ public class MenuManagement {
         System.out.println("2) Display details of all Employee.");
         System.out.println("3) Search for an Employee by ID.");
         System.out.println("4) Search for an Employee by name.");
-        System.out.println("5) Exit to Main Menu.");
+        System.out.println("5) Delete Employee");
+        System.out.println("6) Exit to Main Menu.");
         System.out.println("====================================");
         System.out.print("\nEnter your choice: ");
         userInput = scanner.nextInt();
@@ -185,21 +206,34 @@ public class MenuManagement {
 
         switch (userInput) {
             case 1:
-                // processor.employeeAdd();
+                clearScreen();
+                employees = processor.employeeAdd(employees);
+                employeeMenu();
                 break;
             case 2:
-                // processor.employeeDetails();
+                clearScreen();
+                processor.employeeDetails(employees);
+                employeeMenu();
                 break;
             case 3:
-                // processor.employeeSearchID();
+                clearScreen();
+                processor.employeeSearchID(employees);
+                employeeMenu();
                 break;
             case 4:
-                // processor.employeeSearchName();
+                clearScreen();
+                processor.employeeSearchName(employees);
+                employeeMenu();
                 break;
             case 5:
+                clearScreen();
+                processor.employeeDelete(employees);
+                employeeMenu();
+                break;
+            case 6:
+                clearScreen();
                 mainMenu();
                 break;
-
             default:
                 break;
         }
