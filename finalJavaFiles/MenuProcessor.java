@@ -20,7 +20,7 @@ public class MenuProcessor {
         System.out.println("║                 Enroll Student                ║");
         System.out.println("╚═══════════════════════════════════════════════╝");
         System.out.println("====================================");
-        String studentName, studentMajor, studentAddress;
+        String studentName, studentMajor, studentEmail;
         int studentAge;
 
         // takes student data
@@ -28,14 +28,14 @@ public class MenuProcessor {
         studentName = scanner.nextLine();
         System.out.print("Enter Student's major: ");
         studentMajor = scanner.nextLine();
-        System.out.print("Enter Student's address: ");
-        studentAddress = scanner.nextLine();
+        System.out.print("Enter Student's Email: ");
+        studentEmail = scanner.nextLine();
         System.out.print("Enter Student's age: ");
         studentAge = scanner.nextInt();
         scanner.nextLine();
 
         // makes the student object
-        students.add(new Student(studentName, studentAge, studentAddress, studentMajor));
+        students.add(new Student(studentName, studentAge, studentEmail, studentMajor));
         System.out.println("\nThe student " + studentName + " has sucessfully been added");
         pause();
         return students;
@@ -54,7 +54,7 @@ public class MenuProcessor {
     }
 
     // 1.3
-    public void studentSearchID(ArrayList<Student> students) {
+    public static void studentSearchID(ArrayList<Student> students) {
         System.out.print("Enter student ID: ");
         stringInput = scanner.nextLine();
 
@@ -88,7 +88,6 @@ public class MenuProcessor {
                 studentAttributesMenu(tempStudent);
             }
         }
-        pause();
     }
 
     // 1.3.1
@@ -267,7 +266,7 @@ public class MenuProcessor {
     }
 
     // 2.3
-    public void instructorSearchID(ArrayList<Instructor> instructors) {
+    public static void instructorSearchID(ArrayList<Instructor> instructors) {
         System.out.print("Enter instructor ID: ");
         stringInput = scanner.nextLine();
 
@@ -302,7 +301,6 @@ public class MenuProcessor {
                 instructorAttributesMenu(tempInstructor);
             }
         }
-        pause();
     }
 
     // 2.3.1
@@ -467,7 +465,7 @@ public class MenuProcessor {
     }
 
     // 3.3
-    public void employeeSearchID(ArrayList<Employee> employees) {
+    public static void employeeSearchID(ArrayList<Employee> employees) {
         System.out.print("Enter employee ID: ");
         stringInput = scanner.nextLine();
 
@@ -502,7 +500,6 @@ public class MenuProcessor {
                 employeeAttributesMenu(tempEmployee);
             }
         }
-        pause();
     }
 
     // 3.3.1
@@ -630,6 +627,112 @@ public class MenuProcessor {
             }
         } else {
             System.out.println("Error - Student not found");
+        }
+        pause();
+    }
+
+    // 4
+    public void fullIDSearch(ArrayList<Student> students, ArrayList<Instructor> instructors,
+            ArrayList<Employee> employees) {
+        System.out.print("Enter ID: ");
+        stringInput = scanner.nextLine();
+
+        if (stringInput.substring(0, 1).equals("S")) {
+            int numStudentsFound = 0;
+            boolean studentFound = false;
+
+            for (Student student : students) {
+                tempStudent = student;// keeps looping even after it is found the student id but saves the one that is
+                                      // correct incase there are multiple with the same id
+                if (student.getID().equals(stringInput)) {
+                    System.out.println("\nSuccess");
+                    student.displayDetails();
+                    studentFound = true;
+                    numStudentsFound++;
+                } else {
+                    System.out.println("Searching...");
+                    // if last position in arraylist and student not found
+                    if (students.get(students.size() - 1) == student && !studentFound) {
+                        System.out.println("\nFailure - Student not found");
+                    }
+                }
+            }
+            System.out.println("\nSearch has concluded, " + numStudentsFound + " student's found\n");
+
+            if (studentFound) {
+                System.out.print("Do you want to change the student's data [Y/n]? ");
+                stringInput = scanner.nextLine();
+
+                if (stringInput.toLowerCase().contains("y")) {
+                    studentAttributesMenu(tempStudent);
+                }
+            }
+        } else if (stringInput.substring(0, 1).equals("I")) {
+            int numInstructorFound = 0;
+            boolean instructorFound = false;
+
+            for (Instructor instructor : instructors) {
+                tempInstructor = instructor;// keeps looping even after it is found the instructor id but saves the one
+                                            // that
+                                            // is
+                // correct incase there are multiple with the same id
+                if (instructor.getID().equals(stringInput)) {
+                    System.out.println("\nSuccess");
+                    instructor.displayDetails();
+                    instructorFound = true;
+                    numInstructorFound++;
+                } else {
+                    System.out.println("Searching...");
+                    // if last position in arraylist and instructor not found
+                    if (instructors.get(instructors.size() - 1) == instructor && !instructorFound) {
+                        System.out.println("\nFailure - Instructure not found");
+                    }
+                }
+            }
+            System.out.println("\nSearch has concluded, " + numInstructorFound + " instructor's found\n");
+
+            if (instructorFound) {
+                System.out.print("Do you want to change the instructor's data [Y/n]? ");
+                stringInput = scanner.nextLine();
+
+                if (stringInput.toLowerCase().contains("y")) {
+                    instructorAttributesMenu(tempInstructor);
+                }
+            }
+        } else if (stringInput.substring(0, 1).equals("E")) {
+            int numEmployeeFound = 0;
+            boolean employeeFound = false;
+
+            for (Employee employee : employees) {
+                tempEmployee = employee;// keeps looping even after it is found the employee id but saves the one that
+                                        // is
+                // correct incase there are multiple with the same id
+                if (employee.getID().equals(stringInput)) {
+                    System.out.println("\nSuccess");
+                    employee.displayDetails();
+                    employeeFound = true;
+                    numEmployeeFound++;
+                } else {
+                    System.out.println("Searching...");
+                    // if last position in arraylist and employee not found
+                    if (employees.get(employees.size() - 1) == employee && !employeeFound) {
+                        System.out.println("\nFailure - Instructure not found");
+                    }
+                }
+            }
+            System.out.println("\nSearch has concluded, " + numEmployeeFound + " employee's found\n");
+
+            if (employeeFound) {
+                System.out.print("Do you want to change the employee's data [Y/n]? ");
+                stringInput = scanner.nextLine();
+
+                if (stringInput.toLowerCase().contains("y")) {
+                    employeeAttributesMenu(tempEmployee);
+                }
+            }
+
+        } else {
+            System.out.println("Error - ID not found");
         }
         pause();
     }

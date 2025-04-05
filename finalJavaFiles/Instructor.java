@@ -5,7 +5,7 @@ public class Instructor extends User {
 
     // Instructor ID
     public static String generateInstructorID() {
-        return "I" + (idCounter++);
+        return "I" + (++idCounter);
     }
 
     // Constructor

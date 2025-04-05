@@ -6,7 +6,7 @@ public class Student extends User {
 
     // Student ID
     public static String generateStudentID() {
-        return "S" + (idCounter++);
+        return "S" + (++idCounter);
     }
 
     // Constructor

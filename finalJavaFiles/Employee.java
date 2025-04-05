@@ -11,7 +11,7 @@ public class Employee extends User {
 
     // Generates ID
     public static String generateEmployeeID() {
-        return "E" + (idCounter++);
+        return "E" + (++idCounter);
     }
 
     // Constructor

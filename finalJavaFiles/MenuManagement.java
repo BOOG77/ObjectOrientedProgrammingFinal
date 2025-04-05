@@ -16,7 +16,7 @@ public class MenuManagement {
         this.students = students;
         this.instructors = instructors;
         this.employees = employees;
-        String idCounterFix;
+        String idCounterFix = null;
 
         if (students.size() != 0) {// checks if array is empty
             idCounterFix = students.get(students.size() - 1).getID();// gets id ie. S1000
@@ -25,6 +25,7 @@ public class MenuManagement {
         } else {
             Student.idCounter = 1000;
         }
+        idCounterFix = null;
         if (instructors.size() != 0) {
             idCounterFix = instructors.get(instructors.size() - 1).getID();
             idCounterFix = idCounterFix.substring(1, idCounterFix.length());
@@ -32,6 +33,7 @@ public class MenuManagement {
         } else {
             Instructor.idCounter = 1000;
         }
+        idCounterFix = null;
         if (employees.size() != 0) {
             idCounterFix = employees.get(employees.size() - 1).getID();
             idCounterFix = idCounterFix.substring(1, idCounterFix.length());
@@ -52,7 +54,7 @@ public class MenuManagement {
         System.out.println("1. Manage Students");
         System.out.println("2. Manage Instructors");
         System.out.println("3. Manage Employees");
-        System.out.println("4. Search By ID");
+        System.out.println("4. Search by ID");
         System.out.println("5. Save and Exit");
         System.out.println("====================================");
         System.out.print("\nEnter your choice: ");
@@ -71,7 +73,9 @@ public class MenuManagement {
                 employeeMenu();
                 break;
             case 4:
-                // fullIDSearch();
+                clearScreen();
+                processor.fullIDSearch(students, instructors, employees);
+                mainMenu();
                 break;
             case 5:
                 break;
