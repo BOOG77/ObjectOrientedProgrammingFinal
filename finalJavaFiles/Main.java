@@ -27,13 +27,42 @@ public class Main {
             employees = (ArrayList<Employee>) input.readObject();
             students = (ArrayList<Student>) input.readObject();
             instructors = (ArrayList<Instructor>) input.readObject();
+            String idCounterFix;
+
+            if (students.size() != 0) {// checks if array is empty
+                System.out.println(Student.idCounter);
+
+                idCounterFix = students.get(students.size() - 1).getID();// gets id ie. S1000
+                idCounterFix = idCounterFix.substring(1, idCounterFix.length()); // removes letter ie. 1000
+                Student.idCounter = Integer.parseInt(idCounterFix);// updates idCounter from file ie. 1001
+                System.out.println(Student.idCounter);
+            } else {
+                Student.idCounter = 1000;
+            }
+
+            if (instructors.size() != 0) {
+                idCounterFix = instructors.get(instructors.size() - 1).getID();
+                idCounterFix = idCounterFix.substring(1, idCounterFix.length());
+                Instructor.idCounter = Integer.parseInt(idCounterFix);
+            } else {
+                Instructor.idCounter = 1000;
+            }
+            if (employees.size() != 0) {
+                idCounterFix = employees.get(employees.size() - 1).getID();
+                idCounterFix = idCounterFix.substring(1, idCounterFix.length());
+                Employee.idCounter = Integer.parseInt(idCounterFix);
+            } else {
+                Employee.idCounter = 1000;
+            }
             input.close();
         } catch (IOException ioe) {
             System.err.println("Error opening file");
         } catch (ClassNotFoundException cnfe) {// if object read is not an employee object
             System.err.println("Object read is not Employee");
         }
-
+        // System.out.println(Student.idCounter);
+        // Student s1 = new Student("a", 1, "a", "a");
+        // s1.displayDetails();
         MenuManagement menu = new MenuManagement(employees, students, instructors);// an object holding all the menus
 
         menu.mainMenu();

@@ -2,6 +2,7 @@ package finalJavaFiles;
 
 public class Instructor extends User {
     private String department;
+    static int idCounter = 1000;
 
     // Instructor ID
     public static String generateInstructorID() {
@@ -17,6 +18,14 @@ public class Instructor extends User {
     // setters
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public int getIDCounter() {
+        return this.idCounter;
+    }
+
+    public void setIDCounter(int idCounter) {
+        this.idCounter = idCounter;
     }
 
     // getters

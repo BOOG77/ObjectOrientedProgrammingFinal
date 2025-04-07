@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Employee extends User {
     LocalDate date = LocalDate.now();
-
+    static int idCounter = 1000;
     private String job;
     private LocalDate startDate, endDate;
     private float salary;
@@ -37,6 +37,14 @@ public class Employee extends User {
 
     public String getJob() {
         return this.job;
+    }
+
+    public int getIDCounter() {
+        return this.idCounter;
+    }
+
+    public void setIDCounter(int idCounter) {
+        this.idCounter = idCounter;
     }
 
     // setters

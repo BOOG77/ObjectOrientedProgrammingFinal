@@ -16,31 +16,7 @@ public class MenuManagement {
         this.students = students;
         this.instructors = instructors;
         this.employees = employees;
-        String idCounterFix = null;
 
-        if (students.size() != 0) {// checks if array is empty
-            idCounterFix = students.get(students.size() - 1).getID();// gets id ie. S1000
-            idCounterFix = idCounterFix.substring(1, idCounterFix.length()); // removes letter ie. 1000
-            Student.idCounter = Integer.parseInt(idCounterFix) + 1;// updates idCounter from file ie. 1001
-        } else {
-            Student.idCounter = 1000;
-        }
-        idCounterFix = null;
-        if (instructors.size() != 0) {
-            idCounterFix = instructors.get(instructors.size() - 1).getID();
-            idCounterFix = idCounterFix.substring(1, idCounterFix.length());
-            Instructor.idCounter = Integer.parseInt(idCounterFix) + 1;
-        } else {
-            Instructor.idCounter = 1000;
-        }
-        idCounterFix = null;
-        if (employees.size() != 0) {
-            idCounterFix = employees.get(employees.size() - 1).getID();
-            idCounterFix = idCounterFix.substring(1, idCounterFix.length());
-            Employee.idCounter = Integer.parseInt(idCounterFix) + 1;
-        } else {
-            Employee.idCounter = 1000;
-        }
     }
 
     public void mainMenu() { // Made method for menu - Josh

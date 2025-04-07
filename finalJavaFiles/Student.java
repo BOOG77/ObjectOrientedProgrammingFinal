@@ -3,6 +3,7 @@ package finalJavaFiles;
 public class Student extends User {
     private String major, enrollmentStatus;
     private double GPA;
+    static int idCounter = 1000;
 
     // Student ID
     public static String generateStudentID() {
@@ -30,6 +31,10 @@ public class Student extends User {
         return this.GPA;
     }
 
+    public int getIDCounter() {
+        return this.idCounter;
+    }
+
     // setters
     public void setEnrollmentStatus(String enrollmentStatus) {
         this.enrollmentStatus = enrollmentStatus;
@@ -41,6 +46,10 @@ public class Student extends User {
 
     public void setGPA(double GPA) {
         this.GPA = GPA;
+    }
+
+    public void setIDCounter(int idCounter) {
+        this.idCounter = idCounter;
     }
 
     public void displayDetails() {
