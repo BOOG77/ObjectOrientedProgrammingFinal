@@ -36,7 +36,7 @@ public class MenuProcessor {
 
         // makes the student object
         students.add(new Student(studentName, studentAge, studentEmail, studentMajor));
-        System.out.println("\nThe student " + studentName + " has sucessfully been added");
+        System.out.println("\nThe student " + studentName + " has successfully been added");
         pause();
         return students;
     }
@@ -211,7 +211,7 @@ public class MenuProcessor {
         System.out.println("\nSearch has concluded, " + numStudentsFound + " student's found\n");
 
         if (studentFound) {
-            System.out.print("Are you sure you want to permently delete the student's data [Y/n]? ");
+            System.out.print("Are you sure you want to permanently delete the student's data [Y/n]? ");
             stringInput = scanner.nextLine();
 
             if (stringInput.toLowerCase().contains("y")) {
@@ -248,7 +248,7 @@ public class MenuProcessor {
 
         // makes the student object
         instructors.add(new Instructor(instructorName, instructorAge, instructorAddress, instructorDepartment));
-        System.out.println("\nThe instructor " + instructorName + " has sucessfully been added");
+        System.out.println("\nThe instructor " + instructorName + " has successfully been added");
         pause();
         return instructors;
     }
@@ -287,7 +287,7 @@ public class MenuProcessor {
                 System.out.println("Searching...");
                 // if last position in arraylist and instructor not found
                 if (instructors.get(instructors.size() - 1) == instructor && !instructorFound) {
-                    System.out.println("\nFailure - Instructure not found");
+                    System.out.println("\nFailure - Instructor not found");
                 }
             }
         }
@@ -410,7 +410,7 @@ public class MenuProcessor {
         System.out.println("\nSearch has concluded, " + numInstructorsFound + " instructor's found\n");
 
         if (instructorFound) {
-            System.out.print("Are you sure you want to permently delete the instructor's data [Y/n]? ");
+            System.out.print("Are you sure you want to permanently delete the instructor's data [Y/n]? ");
             stringInput = scanner.nextLine();
 
             if (stringInput.toLowerCase().contains("y")) {
@@ -447,7 +447,7 @@ public class MenuProcessor {
 
         // makes the student object
         employees.add(new Employee(employeeName, employeeAge, employeeAddress, employeeDepartment));
-        System.out.println("\nThe employee " + employeeName + " has sucessfully been added");
+        System.out.println("\nThe employee " + employeeName + " has successfully been added");
         pause();
         return employees;
     }
@@ -486,7 +486,7 @@ public class MenuProcessor {
                 System.out.println("Searching...");
                 // if last position in arraylist and employee not found
                 if (employees.get(employees.size() - 1) == employee && !employeeFound) {
-                    System.out.println("\nFailure - Instructure not found");
+                    System.out.println("\nFailure - Instructor not found");
                 }
             }
         }
@@ -616,7 +616,7 @@ public class MenuProcessor {
         System.out.println("\nSearch has concluded, " + numEmployeesFound + " employee's found\n");
 
         if (employeeFound) {
-            System.out.print("Are you sure you want to permently delete the employee's data [Y/n]? ");
+            System.out.print("Are you sure you want to permanently delete the employee's data [Y/n]? ");
             stringInput = scanner.nextLine();
 
             if (stringInput.toLowerCase().contains("y")) {
@@ -685,7 +685,7 @@ public class MenuProcessor {
                     System.out.println("Searching...");
                     // if last position in arraylist and instructor not found
                     if (instructors.get(instructors.size() - 1) == instructor && !instructorFound) {
-                        System.out.println("\nFailure - Instructure not found");
+                        System.out.println("\nFailure - Instructor not found");
                     }
                 }
             }
@@ -716,7 +716,7 @@ public class MenuProcessor {
                     System.out.println("Searching...");
                     // if last position in arraylist and employee not found
                     if (employees.get(employees.size() - 1) == employee && !employeeFound) {
-                        System.out.println("\nFailure - Instructure not found");
+                        System.out.println("\nFailure - Instructor not found");
                     }
                 }
             }

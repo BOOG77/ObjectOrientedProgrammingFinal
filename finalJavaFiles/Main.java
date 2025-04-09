@@ -3,7 +3,7 @@ package finalJavaFiles;
 import java.io.FileOutputStream;//Writes data to a file in bytes
 import java.io.IOException;//Manage errors with input and output
 import java.io.ObjectOutputStream;//Converts objects to a stream of bytes
-import java.io.FileInputStream;//Reads data from a file as as a stream of bytes
+import java.io.FileInputStream;//Reads data from a file as a stream of bytes
 import java.io.ObjectInputStream;//Converts a stream of bytes into objects
 
 import java.util.Scanner;
