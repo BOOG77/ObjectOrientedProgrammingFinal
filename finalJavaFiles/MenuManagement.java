@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class MenuManagement {
     static MenuProcessor processor = new MenuProcessor();
@@ -23,23 +24,35 @@ public class MenuManagement {
     }
 
     public void mainMenu() { // Made method for menu - Josh
-        clearScreen();
-        System.out.println("\n╔═════════════════════════════════════════════╗");
-        System.out.println("║              Management System              ║");
-        System.out.println("╚═════════════════════════════════════════════╝");
-        System.out.println(" ");
-        System.out.println("====================================");
-        System.out.println("Menu Options:");
-        System.out.println("1. Manage Students");
-        System.out.println("2. Manage Instructors");
-        System.out.println("3. Manage Employees");
-        System.out.println("4. Search by ID");
-        System.out.println("5. Save and Exit");
-        System.out.println("====================================\n");
-        System.out.print("Enter your choice: ");
+        int notInt = 0;
+        do {
+            clearScreen();
+            Scanner mainMenuScanner = new Scanner(System.in);
+            System.out.println("\n╔═════════════════════════════════════════════╗");
+            System.out.println("║              Management System              ║");
+            System.out.println("╚═════════════════════════════════════════════╝");
+            System.out.println(" ");
+            System.out.println("====================================");
+            System.out.println("Menu Options:");
+            System.out.println("1. Manage Students");
+            System.out.println("2. Manage Instructors");
+            System.out.println("3. Manage Employees");
+            System.out.println("4. Search by ID");
+            System.out.println("5. Save and Exit");
+            System.out.println("====================================\n");
+            if (notInt == 1) {
+                System.out.println("Enter a valid input (1-5)");
+            }
+            System.out.print("Enter your choice: ");
 
-        userInput = scanner.nextInt();
-        scanner.nextLine();
+            try {
+                userInput = mainMenuScanner.nextInt();
+                mainMenuScanner.nextLine();
+                notInt = 0;
+            } catch (InputMismatchException e) {
+                notInt = 1;
+            }
+        } while (notInt == 1);
 
         switch (userInput) {
             case 1:
@@ -59,29 +72,40 @@ public class MenuManagement {
             case 5:
                 break;
             default:
-                System.out.println("Error - enter a valid input");
+                mainMenu();
                 break;
         }
-
     }
 
     public void studentMenu() {
-        clearScreen();
-        System.out.println("\n╔═══════════════════════════════════════════════╗");
-        System.out.println("║               Student Management              ║");
-        System.out.println("╚═══════════════════════════════════════════════╝");
-        System.out.println("====================================");
-        System.out.println("1) Add a new Student.");
-        System.out.println("2) Display details of all Student.");
-        System.out.println("3) Search for a Student by ID.");
-        System.out.println("4) Search for a Student by name.");
-        System.out.println("5) Delete Student");
-        System.out.println("6) Exit to Main Menu.");
-        System.out.println("====================================");
-        System.out.print("\nEnter your choice: ");
+        int notInt = 0;
+        do {
+            clearScreen();
+            Scanner studentMenuScanner = new Scanner(System.in);
+            System.out.println("\n╔═══════════════════════════════════════════════╗");
+            System.out.println("║               Student Management              ║");
+            System.out.println("╚═══════════════════════════════════════════════╝");
+            System.out.println("====================================");
+            System.out.println("1) Add a new Student.");
+            System.out.println("2) Display details of all Student.");
+            System.out.println("3) Search for a Student by ID.");
+            System.out.println("4) Search for a Student by name.");
+            System.out.println("5) Delete Student");
+            System.out.println("6) Exit to Main Menu.");
+            System.out.println("====================================\n");
+            if (notInt == 1) {
+                System.out.println("Enter a valid input (1-6)");
+            }
+            System.out.print("Enter your choice: ");
 
-        userInput = scanner.nextInt();
-        scanner.nextLine();
+            try {
+                userInput = studentMenuScanner.nextInt();
+                studentMenuScanner.nextLine();
+                notInt = 0;
+            } catch (InputMismatchException e) {
+                notInt = 1;
+            }
+        } while (notInt == 1);
 
         switch (userInput) {
             case 1:
@@ -108,6 +132,7 @@ public class MenuManagement {
             case 5:
                 clearScreen();
                 processor.studentDelete(students);
+                save(employees, students, instructors);
                 studentMenu();
                 break;
             case 6:
@@ -120,21 +145,34 @@ public class MenuManagement {
     }
 
     public void instructorMenu() {
-        clearScreen();
-        System.out.println("\n╔═══════════════════════════════════════════════╗");
-        System.out.println("║             Instructor Management             ║");
-        System.out.println("╚═══════════════════════════════════════════════╝");
-        System.out.println("====================================");
-        System.out.println("1) Add a new Instructor.");
-        System.out.println("2) Display details of all Instructor.");
-        System.out.println("3) Search for an Instructor by ID.");
-        System.out.println("4) Search for an Instructor by name.");
-        System.out.println("5) Delete Instructor");
-        System.out.println("6) Exit to Main Menu.");
-        System.out.println("====================================");
-        System.out.print("\nEnter your choice: ");
-        userInput = scanner.nextInt();
-        scanner.nextLine();
+        int notInt = 0;
+        do {
+            clearScreen();
+            Scanner instructorMenuScanner = new Scanner(System.in);
+            System.out.println("\n╔═══════════════════════════════════════════════╗");
+            System.out.println("║             Instructor Management             ║");
+            System.out.println("╚═══════════════════════════════════════════════╝");
+            System.out.println("====================================");
+            System.out.println("1) Add a new Instructor.");
+            System.out.println("2) Display details of all Instructor.");
+            System.out.println("3) Search for an Instructor by ID.");
+            System.out.println("4) Search for an Instructor by name.");
+            System.out.println("5) Delete Instructor");
+            System.out.println("6) Exit to Main Menu.");
+            System.out.println("====================================\n");
+            if (notInt == 1) {
+                System.out.println("Enter a valid input (1-6)");
+            }
+            System.out.print("Enter your choice: ");
+
+            try {
+                userInput = instructorMenuScanner.nextInt();
+                instructorMenuScanner.nextLine();
+                notInt = 0;
+            } catch (InputMismatchException e) {
+                notInt = 1;
+            }
+        } while (notInt == 1);
 
         switch (userInput) {
             case 1:
@@ -161,6 +199,7 @@ public class MenuManagement {
             case 5:
                 clearScreen();
                 processor.instructorDelete(instructors);
+                save(employees, students, instructors);
                 instructorMenu();
                 break;
             case 6:
@@ -174,21 +213,34 @@ public class MenuManagement {
     }
 
     public void employeeMenu() {
-        clearScreen();
-        System.out.println("\n╔═══════════════════════════════════════════════╗");
-        System.out.println("║              Employee Management              ║");
-        System.out.println("╚═══════════════════════════════════════════════╝");
-        System.out.println("====================================");
-        System.out.println("1) Add a new Employee.");
-        System.out.println("2) Display details of all Employee.");
-        System.out.println("3) Search for an Employee by ID.");
-        System.out.println("4) Search for an Employee by name.");
-        System.out.println("5) Delete Employee");
-        System.out.println("6) Exit to Main Menu.");
-        System.out.println("====================================");
-        System.out.print("\nEnter your choice: ");
-        userInput = scanner.nextInt();
-        scanner.nextLine();
+        int notInt = 0;
+        do {
+            clearScreen();
+            Scanner employeeMenuScanner = new Scanner(System.in);
+            System.out.println("\n╔═══════════════════════════════════════════════╗");
+            System.out.println("║              Employee Management              ║");
+            System.out.println("╚═══════════════════════════════════════════════╝");
+            System.out.println("====================================");
+            System.out.println("1) Add a new Employee.");
+            System.out.println("2) Display details of all Employee.");
+            System.out.println("3) Search for an Employee by ID.");
+            System.out.println("4) Search for an Employee by name.");
+            System.out.println("5) Delete Employee");
+            System.out.println("6) Exit to Main Menu.");
+            System.out.println("====================================\n");
+            if (notInt == 1) {
+                System.out.println("Enter a valid input (1-6)");
+            }
+            System.out.print("Enter your choice: ");
+
+            try {
+                userInput = employeeMenuScanner.nextInt();
+                employeeMenuScanner.nextLine();
+                notInt = 0;
+            } catch (InputMismatchException e) {
+                notInt = 1;
+            }
+        } while (notInt == 1);
 
         switch (userInput) {
             case 1:
@@ -215,6 +267,7 @@ public class MenuManagement {
             case 5:
                 clearScreen();
                 processor.employeeDelete(employees);
+                save(employees, students, instructors);
                 employeeMenu();
                 break;
             case 6:

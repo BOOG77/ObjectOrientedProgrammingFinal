@@ -2,6 +2,7 @@ package finalJavaFiles;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class MenuProcessor {
     static Scanner scanner = new Scanner(System.in);
@@ -21,7 +22,7 @@ public class MenuProcessor {
         System.out.println("╚═══════════════════════════════════════════════╝");
         System.out.println("====================================");
         String studentName, studentMajor, studentEmail;
-        int studentAge;
+        int studentAge = -1;
 
         // takes student data
         System.out.print("\nEnter Student's name: ");
@@ -30,8 +31,18 @@ public class MenuProcessor {
         studentMajor = scanner.nextLine();
         System.out.print("Enter Student's Email: ");
         studentEmail = scanner.nextLine();
-        System.out.print("Enter Student's age: ");
-        studentAge = scanner.nextInt();
+
+        boolean validAge = false;
+        while (!validAge) {
+            System.out.print("Enter Student's age: ");
+            try {
+                studentAge = scanner.nextInt();
+                validAge = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // clear the bad input
+            }
+        }
         scanner.nextLine();
 
         // makes the student object
@@ -87,25 +98,40 @@ public class MenuProcessor {
             if (stringInput.toLowerCase().contains("y")) {
                 studentAttributesMenu(tempStudent);
             }
+        } else {
+            pause();
         }
     }
 
     // 1.3.1
     static void studentAttributesMenu(Student student) {
-        System.out.println("\u001B[2J");
-        System.out.println("\n╔═══════════════════════════════════════════════╗");
-        System.out.println("║             Student Attribute Menu            ║");
-        System.out.println("╚═══════════════════════════════════════════════╝");
-        student.displayDetails();
-        System.out.println("====================================");
-        System.out.println("1. Name\t\t2. Role");
-        System.out.println("3. Major   \t4. Enrollment Status");
-        System.out.println("5. GPA \t\t6. Email");
-        System.out.println("4. Age \t\t8. Exit");
-        System.out.println("====================================");
-        System.out.print("\nEnter your choice: ");
-        intInput = scanner.nextInt();
-        scanner.nextLine();
+        int notInt = 0;
+        do {
+            System.out.println("\u001B[2J");
+            Scanner studentAttributeScanner = new Scanner(System.in);
+            System.out.println("\n╔═══════════════════════════════════════════════╗");
+            System.out.println("║             Student Attribute Menu            ║");
+            System.out.println("╚═══════════════════════════════════════════════╝");
+            student.displayDetails();
+            System.out.println("====================================");
+            System.out.println("1. Name\t\t2. Role");
+            System.out.println("3. Major   \t4. Enrollment Status");
+            System.out.println("5. GPA \t\t6. Email");
+            System.out.println("7. Age \t\t8. Exit");
+            System.out.println("====================================\n");
+            if (notInt == 1) {
+                System.out.println("Enter a valid input (1-8)");
+            }
+            System.out.print("Enter your choice: ");
+
+            try {
+                intInput = studentAttributeScanner.nextInt();
+                studentAttributeScanner.nextLine();
+                notInt = 0;
+            } catch (InputMismatchException e) {
+                notInt = 1;
+            }
+        } while (notInt == 1);
 
         switch (intInput) {
             case 1:
@@ -133,8 +159,18 @@ public class MenuProcessor {
                 studentAttributesMenu(student);
                 break;
             case 5:
-                System.out.print("Enter a new GPA: ");
-                doubleInput = scanner.nextDouble();
+                boolean validAge = false;
+                while (!validAge) {
+                    System.out.print("Enter a new GPA: ");
+                    try {
+                        doubleInput = scanner.nextDouble();
+                        validAge = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        scanner.nextLine(); // clear the bad input
+                    }
+                }
+                scanner.nextLine();
                 student.setGPA(doubleInput);
                 studentAttributesMenu(student);
                 break;
@@ -146,15 +182,25 @@ public class MenuProcessor {
                 studentAttributesMenu(student);
                 break;
             case 7:
-                System.out.print("Enter a new Age: ");
-                intInput = scanner.nextInt();
+                validAge = false;
+                while (!validAge) {
+                    System.out.print("Enter a new Age: ");
+                    try {
+                        intInput = scanner.nextInt();
+                        validAge = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        scanner.nextLine(); // clear the bad input
+                    }
+                }
+                scanner.nextLine();
                 student.setAge(intInput);
                 studentAttributesMenu(student);
                 break;
             case 8:
                 break;
             default:
-                System.out.println("Error - enter a number between 1 and 9");
+                System.out.println("Error - enter a number between 1 and 8");
         }
     }
 
@@ -233,7 +279,7 @@ public class MenuProcessor {
         System.out.println("╚═══════════════════════════════════════════════╝");
         System.out.println("====================================");
         String instructorName, instructorDepartment, instructorAddress;
-        int instructorAge;
+        int instructorAge = -1;
 
         // takes student data
         System.out.print("\nEnter Instructor's name: ");
@@ -242,8 +288,18 @@ public class MenuProcessor {
         instructorDepartment = scanner.nextLine();
         System.out.print("Enter Instructor's address: ");
         instructorAddress = scanner.nextLine();
-        System.out.print("Enter Instructor's age: ");
-        instructorAge = scanner.nextInt();
+
+        boolean validAge = false;
+        while (!validAge) {
+            System.out.print("Enter Instructor's age: ");
+            try {
+                instructorAge = scanner.nextInt();
+                validAge = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // clear the bad input
+            }
+        }
         scanner.nextLine();
 
         // makes the student object
@@ -300,24 +356,39 @@ public class MenuProcessor {
             if (stringInput.toLowerCase().contains("y")) {
                 instructorAttributesMenu(tempInstructor);
             }
+        } else {
+            pause();
         }
     }
 
     // 2.3.1
     static void instructorAttributesMenu(Instructor instructor) {
-        System.out.println("\u001B[2J");
-        System.out.println("\n╔═══════════════════════════════════════════════╗");
-        System.out.println("║           Instructor Attribute Menu           ║");
-        System.out.println("╚═══════════════════════════════════════════════╝");
-        instructor.displayDetails();
-        System.out.println("====================================");
-        System.out.println("1. Name\t\t2. Role");
-        System.out.println("3. Department  4. Email");
-        System.out.println("5. Age \t\t6. Exit");
-        System.out.println("====================================");
-        System.out.print("\nEnter your choice: ");
-        intInput = scanner.nextInt();
-        scanner.nextLine();
+        int notInt = 0;
+        do {
+            System.out.println("\u001B[2J");
+            Scanner instructorAttributeScanner = new Scanner(System.in);
+            System.out.println("\n╔═══════════════════════════════════════════════╗");
+            System.out.println("║           Instructor Attribute Menu           ║");
+            System.out.println("╚═══════════════════════════════════════════════╝");
+            instructor.displayDetails();
+            System.out.println("====================================");
+            System.out.println("1. Name\t\t2. Role");
+            System.out.println("3. Department   4. Email");
+            System.out.println("5. Age \t\t6. Exit");
+            System.out.println("====================================\n");
+            if (notInt == 1) {
+                System.out.println("Enter a valid input (1-6)");
+            }
+            System.out.print("Enter your choice: ");
+
+            try {
+                intInput = instructorAttributeScanner.nextInt();
+                instructorAttributeScanner.nextLine();
+                notInt = 0;
+            } catch (InputMismatchException e) {
+                notInt = 1;
+            }
+        } while (notInt == 1);
 
         switch (intInput) {
             case 1:
@@ -345,8 +416,18 @@ public class MenuProcessor {
                 instructorAttributesMenu(instructor);
                 break;
             case 5:
-                System.out.print("Enter a new Age: ");
-                intInput = scanner.nextInt();
+                boolean validAge = false;
+                while (!validAge) {
+                    System.out.print("Enter a new Age: ");
+                    try {
+                        intInput = scanner.nextInt();
+                        validAge = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        scanner.nextLine(); // clear the bad input
+                    }
+                }
+                scanner.nextLine();
                 instructor.setAge(intInput);
                 instructorAttributesMenu(instructor);
                 break;
@@ -432,7 +513,7 @@ public class MenuProcessor {
         System.out.println("╚═══════════════════════════════════════════════╝");
         System.out.println("====================================");
         String employeeName, employeeDepartment, employeeAddress;
-        int employeeAge;
+        int employeeAge = -1;
 
         // takes student data
         System.out.print("\nEnter Employee's name: ");
@@ -441,8 +522,18 @@ public class MenuProcessor {
         employeeDepartment = scanner.nextLine();
         System.out.print("Enter Employee's address: ");
         employeeAddress = scanner.nextLine();
-        System.out.print("Enter Employee's age: ");
-        employeeAge = scanner.nextInt();
+
+        boolean validAge = false;
+        while (!validAge) {
+            System.out.print("Enter Employee's age: ");
+            try {
+                employeeAge = scanner.nextInt();
+                validAge = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // clear the bad input
+            }
+        }
         scanner.nextLine();
 
         // makes the student object
@@ -499,25 +590,40 @@ public class MenuProcessor {
             if (stringInput.toLowerCase().contains("y")) {
                 employeeAttributesMenu(tempEmployee);
             }
+        } else {
+            pause();
         }
     }
 
     // 3.3.1
     static void employeeAttributesMenu(Employee employee) {
-        System.out.println("\u001B[2J");
-        System.out.println("\n╔═══════════════════════════════════════════════╗");
-        System.out.println("║             Employee Attribute Menu           ║");
-        System.out.println("╚═══════════════════════════════════════════════╝");
-        employee.displayDetails();
-        System.out.println("====================================");
-        System.out.println("1. Name\t\t2. Role");
-        System.out.println("3. Job \t4. Salary");
-        System.out.println("5. Email\t\t6. Age");
-        System.out.println("\t\t8. Exit");
-        System.out.println("====================================");
-        System.out.print("\nEnter your choice: ");
-        intInput = scanner.nextInt();
-        scanner.nextLine();
+        int notInt = 0;
+        do {
+            System.out.println("\u001B[2J");
+            Scanner employeeAttributeScanner = new Scanner(System.in);
+            System.out.println("\n╔═══════════════════════════════════════════════╗");
+            System.out.println("║             Employee Attribute Menu           ║");
+            System.out.println("╚═══════════════════════════════════════════════╝");
+            employee.displayDetails();
+            System.out.println("====================================");
+            System.out.println("1. Name\t\t2. Role");// 6+8+6= 20
+            System.out.println("3. Job \t\t4. Salary");
+            System.out.println("5. Email   \t6. Age");
+            System.out.println("\t 7. Exit");
+            System.out.println("====================================\n");
+            if (notInt == 1) {
+                System.out.println("Enter a valid input (1-7)");
+            }
+            System.out.print("Enter your choice: ");
+
+            try {
+                intInput = employeeAttributeScanner.nextInt();
+                employeeAttributeScanner.nextLine();
+                notInt = 0;
+            } catch (InputMismatchException e) {
+                notInt = 1;
+            }
+        } while (notInt == 1);
 
         switch (intInput) {
             case 1:
@@ -539,8 +645,19 @@ public class MenuProcessor {
                 employeeAttributesMenu(employee);
                 break;
             case 4:
-                System.out.print("Enter a new Salary: ");
-                doubleInput = scanner.nextDouble();
+                boolean validSalary = false;
+
+                while (!validSalary) {
+                    System.out.print("Enter a new Salary: ");
+                    try {
+                        doubleInput = scanner.nextDouble();
+                        validSalary = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        scanner.nextLine(); // clear the bad input
+                    }
+                }
+                scanner.nextLine();
                 employee.setSalary((float) doubleInput);
                 employeeAttributesMenu(employee);
                 break;
@@ -551,15 +668,25 @@ public class MenuProcessor {
                 employeeAttributesMenu(employee);
                 break;
             case 6:
-                System.out.print("Enter a new Age: ");
-                intInput = scanner.nextInt();
+                boolean validAge = false;
+                while (!validAge) {
+                    System.out.print("Enter a new Age: ");
+                    try {
+                        intInput = scanner.nextInt();
+                        validAge = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        scanner.nextLine(); // clear the bad input
+                    }
+                }
+                scanner.nextLine();
                 employee.setAge(intInput);
                 employeeAttributesMenu(employee);
                 break;
             case 7:
                 break;
             default:
-                System.out.println("Error - enter a number between 1 and 9");
+                System.out.println("Error - enter a number between 1 and 7");
         }
     }
 
