@@ -1,6 +1,9 @@
 package finalJavaFiles;
 
 import java.util.Scanner;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class MenuManagement {
@@ -32,8 +35,8 @@ public class MenuManagement {
         System.out.println("3. Manage Employees");
         System.out.println("4. Search by ID");
         System.out.println("5. Save and Exit");
-        System.out.println("====================================");
-        System.out.print("\nEnter your choice: ");
+        System.out.println("====================================\n");
+        System.out.print("Enter your choice: ");
 
         userInput = scanner.nextInt();
         scanner.nextLine();
@@ -59,6 +62,7 @@ public class MenuManagement {
                 System.out.println("Error - enter a valid input");
                 break;
         }
+
     }
 
     public void studentMenu() {
@@ -83,6 +87,7 @@ public class MenuManagement {
             case 1:
                 clearScreen();
                 students = processor.studentAdd(students);
+                save(employees, students, instructors);
                 studentMenu();
                 break;
             case 2:
@@ -135,6 +140,7 @@ public class MenuManagement {
             case 1:
                 clearScreen();
                 instructors = processor.instructorAdd(instructors);
+                save(employees, students, instructors);
                 instructorMenu();
                 break;
             case 2:
@@ -188,6 +194,7 @@ public class MenuManagement {
             case 1:
                 clearScreen();
                 employees = processor.employeeAdd(employees);
+                save(employees, students, instructors);
                 employeeMenu();
                 break;
             case 2:
@@ -222,5 +229,18 @@ public class MenuManagement {
 
     static final void clearScreen() {
         System.out.println("\u001B[2J");
+    }
+
+    static void save(ArrayList<Employee> employees, ArrayList<Student> students, ArrayList<Instructor> instructors) {
+        try {
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Database/employeeList.dat"));
+            // Writes the 3 arrayLists to the file
+            output.writeObject(employees);
+            output.writeObject(students);
+            output.writeObject(instructors);
+            output.close();
+        } catch (IOException ioe) {
+            System.err.println("Error saving to file");
+        }
     }
 }

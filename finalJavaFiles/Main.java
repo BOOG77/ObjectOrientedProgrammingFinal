@@ -15,14 +15,11 @@ public class Main {
     @SuppressWarnings("unchecked")
 
     public static void main(String[] args) {
-
-        // 3 types of arraylists
-        ArrayList<Employee> employees = new ArrayList<Employee>();
+        ArrayList<Employee> employees = new ArrayList<Employee>();// 3 types of arraylists
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Instructor> instructors = new ArrayList<Instructor>();
 
-        // Reads and assigns data to the 3 arrayLists from the file
-        try {
+        try {// Reads and assigns data to the 3 arrayLists from the file
             ObjectInputStream input = new ObjectInputStream(new FileInputStream("Database/employeeList.dat"));
             employees = (ArrayList<Employee>) input.readObject();
             students = (ArrayList<Student>) input.readObject();
@@ -30,12 +27,9 @@ public class Main {
             String idCounterFix;
 
             if (students.size() != 0) {// checks if array is empty
-                System.out.println(Student.idCounter);
-
                 idCounterFix = students.get(students.size() - 1).getID();// gets id ie. S1000
                 idCounterFix = idCounterFix.substring(1, idCounterFix.length()); // removes letter ie. 1000
                 Student.idCounter = Integer.parseInt(idCounterFix);// updates idCounter from file ie. 1001
-                System.out.println(Student.idCounter);
             } else {
                 Student.idCounter = 1000;
             }
@@ -60,26 +54,9 @@ public class Main {
         } catch (ClassNotFoundException cnfe) {// if object read is not an employee object
             System.err.println("Object read is not Employee");
         }
-        // System.out.println(Student.idCounter);
-        // Student s1 = new Student("a", 1, "a", "a");
-        // s1.displayDetails();
+
         MenuManagement menu = new MenuManagement(employees, students, instructors);// an object holding all the menus
 
         menu.mainMenu();
-        save(employees, students, instructors);
     }
-
-    static void save(ArrayList<Employee> employees, ArrayList<Student> students, ArrayList<Instructor> instructors) {
-        try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Database/employeeList.dat"));
-            // Writes the 3 arrayLists to the file
-            output.writeObject(employees);
-            output.writeObject(students);
-            output.writeObject(instructors);
-            output.close();
-        } catch (IOException ioe) {
-            System.err.println("Error saving to file");
-        }
-    }
-
 }
