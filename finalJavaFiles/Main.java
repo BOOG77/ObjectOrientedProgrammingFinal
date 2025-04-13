@@ -1,3 +1,11 @@
+/*
+    School Management System
+
+    Course: PROG-1400 Object-Oriented Programming
+    Author's: Dawson, Jeremy, Judah, Josh (DJJJ)
+    Date: 13/04/2025
+    Instructor: Nadia Gouda
+*/
 package finalJavaFiles;
 
 import java.io.FileOutputStream;//Writes data to a file in bytes
